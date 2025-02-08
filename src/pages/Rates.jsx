@@ -1,17 +1,19 @@
+import { useEffect } from 'react';
 import { Wave } from 'react-animated-text';
 import { useDispatch, useSelector } from 'react-redux';
+
+import Section from '../components/Section/Section';
+import Container from '../components/Container/Container';
+import Heading from '../components/Heading/Heading';
+import RatesList from '../components/RatesList/RatesList';
+import Filter from '../components/Filter/Filter';
+
+import { fetchLatestRates } from '../redux/currency/operations';
 import {
   selectBaseCurrency,
   selectError,
   selectFilteredRates,
 } from '../redux/currency/selectors';
-import Section from '../components/Section/Section';
-import Container from '../components/Container/Container';
-import Heading from '../components/Heading/Heading';
-import RatesList from '../components/RatesList/RatesList';
-import { useEffect } from 'react';
-import { fetchLatestRates } from '../redux/currency/operations';
-import Filter from '../components/Filter/Filter';
 
 const Rates = () => {
   const filteredRates = useSelector(selectFilteredRates);

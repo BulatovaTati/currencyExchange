@@ -1,11 +1,11 @@
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-
 import symbols from './symbols.json';
+
+import { setBaseCurrency } from '../../redux/currency/slice';
 
 import styles from './SelectRates.module.css';
 import './ReactSelect.css';
-import { useDispatch } from 'react-redux';
-import { setBaseCurrency } from '../../redux/currency/slice';
 
 const SelectRates = ({ baseCurrency }) => {
   const dispatch = useDispatch();

@@ -5,8 +5,9 @@ import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';
 import Heading from '../components/Heading/Heading';
 import ExchangeForm from '../components/ExchangeForm/ExchangeForm';
-
 import ExchangeInfo from '../components/ExchangeInfo/ExchangeInfo';
+import Loader from '../components/Loader/Loader';
+
 import {
   selectError,
   selectExchangeInfo,
@@ -14,7 +15,6 @@ import {
 } from '../redux/currency/selectors';
 import { setBaseCurrency } from '../redux/currency/slice';
 import { fetchBaseCurrency } from '../redux/currency/operations';
-import Loader from '../components/Loader/Loader';
 
 const Home = () => {
   const isError = useSelector(selectError);
@@ -34,7 +34,7 @@ const Home = () => {
       dispatch(fetchBaseCurrency(crd));
     }
 
-    function error(err) {
+    function error() {
       dispatch(setBaseCurrency('USD'));
     }
 

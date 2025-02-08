@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
-// import Heading from './components/Heading/Heading';
 
 const Home = lazy(() => import('./pages/Home'));
 const Rates = lazy(() => import('./pages/Rates'));
