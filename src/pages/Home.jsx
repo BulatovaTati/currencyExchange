@@ -5,6 +5,9 @@ import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';
 import Heading from '../components/Heading/Heading';
 import { fetchBaseCurrency } from '../redux/currency/operations';
+import { setBaseCurrency } from '../redux/currency/slice';
+import ExchangeForm from '../components/ExchangeForm/ExchangeForm';
+
 
 const Home = () => {
   const isError = false;
@@ -23,7 +26,8 @@ const Home = () => {
     }
 
     function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+      dispatch (setBaseCurrency("USD"));
+
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
@@ -33,7 +37,7 @@ const Home = () => {
     <Section>
       <Container>
         <Heading info title="What currencies do you want to exchange?🙂" />
-
+<ExchangeForm/>
         {isError && (
           <Heading
             error
