@@ -1,16 +1,25 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';
 import Heading from '../components/Heading/Heading';
-import { fetchBaseCurrency } from '../redux/currency/operations';
-import { setBaseCurrency } from '../redux/currency/slice';
 import ExchangeForm from '../components/ExchangeForm/ExchangeForm';
 
+import ExchangeInfo from '../components/ExchangeInfo/ExchangeInfo';
+import {
+  selectError,
+  selectExchangeInfo,
+  selectIsLoading,
+} from '../redux/currency/selectors';
+import { setBaseCurrency } from '../redux/currency/slice';
+import { fetchBaseCurrency } from '../redux/currency/operations';
+import Loader from '../components/Loader/Loader';
 
 const Home = () => {
-  const isError = false;
+  const isError = useSelector(selectError);
+  const exchangeInfo = useSelector(selectExchangeInfo);
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,8 +35,7 @@ const Home = () => {
     }
 
     function error(err) {
-      dispatch (setBaseCurrency("USD"));
-
+      dispatch(setBaseCurrency('USD'));
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
@@ -37,7 +45,9 @@ const Home = () => {
     <Section>
       <Container>
         <Heading info title="What currencies do you want to exchange?🙂" />
-<ExchangeForm/>
+        <ExchangeForm />
+        {exchangeInfo && <ExchangeInfo {...exchangeInfo} />}
+        {isLoading && <Loader />}
         {isError && (
           <Heading
             error
