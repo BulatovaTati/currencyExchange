@@ -6,11 +6,15 @@ import styles from './SelectRates.module.css';
 
 import './ReactSelect.css';
 
-const SelectRates = () => {
+const SelectRates = ({ baseCurrency }) => {
   return (
     <div className={styles.box}>
       <p className={styles.text}>Your base currency:&nbsp;</p>
       <Select
+        value={{
+          label: baseCurrency,
+          value: baseCurrency,
+        }}
         className={styles.select}
         classNamePrefix="react-select"
         isSearchable
